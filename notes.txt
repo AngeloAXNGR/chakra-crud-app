@@ -1,0 +1,16 @@
+	const updateTask = (event:any, id:number) => {
+		event.preventDefault();
+		const title = formData.title;
+		const dueDate = formData.dueDate;
+		const priority = formData.priority;
+		
+		fetch(`http://localhost:8000/tasks/${id}`, {
+			method:'PUT',
+			headers: {"Content-type": 'application/json'},
+			body: JSON.stringify({title, dueDate, priority})
+		}).then(() => {
+			setFormData({title:'', dueDate:'', priority:'High'})
+			navigate('/')
+			loadTasks();
+		})
+	}
